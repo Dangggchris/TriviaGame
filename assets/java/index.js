@@ -15,7 +15,7 @@ $(document).ready(function() {
 
     var correct = 0;
     var wrong = 0;
-    var time = 25;
+    var time = 10;
     var triviaStatus = false;
     var allQuestions = haha.length;
     var randQuestion;
@@ -28,6 +28,16 @@ $(document).ready(function() {
     $("#start").on("click",function () {
         $("#start").hide();
         $(".game").show();
+        $("#reset").show();
+
+        selectQuestion();
+        startTimer();
+    })
+
+    $("#reset").on("click", function () {
+        time = 10;
+        $("#question").empty();
+        $("#choices").empty();
         selectQuestion();
         startTimer();
     })
@@ -41,11 +51,23 @@ $(document).ready(function() {
         $("#question").html(randQuestion.question); // dispalys question
         for (i = 0; i <randQuestion.choices.length; i++) {
             var userOptions = $("<li>");
-            userOptions.addClass("list-group-item answerOptions");
+            userOptions.addClass("list-group-item list-group-item-action answerOptions");
             userOptions.html(randQuestion.choices[i]);
             userOptions.attr("data-number", i);
             $("#choices").append(userOptions);
         }
+
+                // check if the 
+        $(".answerOptions").on("click", function () {
+            userPick = parseInt($(this).attr("data-number"));
+
+            if (userPick === randQuestion.answer) {
+                console.log(userPick);
+                correct++;
+                $("#correct").text(correct);
+            }
+            
+        })
     }
 
     // -1 sec every interval
@@ -64,17 +86,17 @@ $(document).ready(function() {
 
         timeNum = parseInt(time);
         $("#timeLeft").text("Time Remaining: " + time);
-        console.log(time);
+      
 
         if (timeNum === 0) {
             wrong++;
+            $("#wrong").text(wrong);
             clearInterval(countdown);
         }
 
 
-        // if (time === 0);
-        // clearInterval(countdown);
-
     }
+
+
 
 })    

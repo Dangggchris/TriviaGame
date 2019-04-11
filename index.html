@@ -17,13 +17,24 @@
 <div class="container text-center game">
     
 
-    <h3  id="timeLeft">Time Remaining: 25</h3>
+    <h3  id="timeLeft"></h3>
 
-    <h4  id="question">Question placeholder</h4>
-
-    <h5 class="list-group" id="choices">Choices:</h5> <!-- probably make this into a list -->
+    <h4  id="question"></h4>
+    <h5>Choices:</h5>
+    <h5 class="list-group" id="choices"></h5> <!-- probably make this into a list -->
     <br>
 
+</div>
+
+<div class="container text-center game">
+    <div class="row">
+        <div class="col-sm-6">
+            <h5>Correct: <span id="correct">0</span></h5>
+        </div>
+        <div class="col-sm-6">
+            <h5>Wrong: <span id="wrong">0</span></h5>
+        </div>
+    </div>
 </div>
 
 <div class="container text-center" id="buttons">
@@ -33,16 +44,7 @@
     <button class="btn btn-danger" id="reset">Try Again?</button>
 </div>
 
-<div class="container text-center game">
-    <div class="row">
-        <div class="col-sm-6">
-            <h3>Correct: <span id="correct"></span></h3>
-        </div>
-        <div class="col-sm-6">
-            <h3>Wrong: <span id="wrong"></span></h3>
-        </div>
-    </div>
-</div>
+
 
 </body>
 </html>
