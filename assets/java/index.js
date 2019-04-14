@@ -20,8 +20,33 @@ $(document).ready(function() {
             question: "How many hero kills are needed for a 'Rampage'?",
             choices: ["2","3","4","5"],
             answer: 3
+        },
+        {
+            question: "Which of the following heroes does not have a Aghanims Scepter Upgrade?",
+            choices: ["Lina","Kunkka","Sniper","Centaur"],
+            answer: 1
+        },
+        {
+            question: "Obsidian Devourer has the highest Int stat gain.",
+            choices: ["True","False"],
+            answer: 1
+        },
+        {
+            question: "Venomancer's ultimate skill, Poison Nova, can kill you.",
+            choices: ["True","False"],
+            answer: 1
+        },
+        {
+            question: "Which of the following heroes does not have a passive ability?",
+            choices: ["Storm Spirit","Monkey King","Abaddon","Ancient Apparition"],
+            answer: 3
         }
     ];
+
+
+    var audioElement = document.createElement('audio');
+    audioElement.setAttribute('src', 'https://gamepedia.cursecdn.com/dota2_gamepedia/b/bc/Music_default_ui_startup_04.mp3');
+    audioElement.loop = true;
 
     var correct = 0;
     var wrong = 0;
@@ -41,6 +66,7 @@ $(document).ready(function() {
         $("#timeLeft").text("Time Remaining: " + 25)
         $("#start").hide();
         $(".game").show();
+        audioElement.play();
 
 
         selectQuestion();
@@ -49,10 +75,12 @@ $(document).ready(function() {
     })
 
     $("#reset").on("click", function () {
-        
+
+       
         // refreshes page
         location.reload();
-        
+
+     
     })
 
 
@@ -63,15 +91,15 @@ $(document).ready(function() {
 
 
     function selectQuestion () {
-        
+        console.log(haha);
         index = Math.floor(Math.random() * haha.length); // random number from total objects in array
         randQuestion = haha[index]; // uses random number to select object in array
         usedQuestions.push(randQuestion);
         haha.splice(haha.indexOf(randQuestion), 1 );
         usedTotal = usedQuestions.length;
-
         $("#question").html(randQuestion.question); // dispalys question
         $("#next").hide();
+
 
         if (usedQuestions != haha.length) {
             for (i = 0; i <randQuestion.choices.length; i++) {
@@ -92,11 +120,10 @@ $(document).ready(function() {
                     $("#correct").text(correct);
                     stopTimer();
 
-                    if (usedTotal !== 4) {
+                    if (usedTotal !== 8) {
                         $("#next").show();
                         // prevent user from selecting another option
                         $(".answerOptions").off('click');
-                        console.log(usedTotal);
                     }
 
                     else {
@@ -106,9 +133,6 @@ $(document).ready(function() {
                         $("#score").show();
                         $("#reset").show();
 
-                        for (i=0; i < usedTotal; i++) {
-                            haha.push(usedQuestions[i]);
-                        }
                     }
 
                 }
@@ -118,23 +142,16 @@ $(document).ready(function() {
                     $("#wrong").text(wrong);
                     stopTimer();
 
-                    if (usedTotal !== 4) {
+                    if (usedTotal !== 8) {
                         $("#next").show();
                         // prevent user from selecting another option
                         $(".answerOptions").off('click');
                         console.log(usedTotal);
-                    }
-
-                    else {
-
+                    } else {
                         $(".game").hide();
                         $("#next").hide();
                         $("#score").show();
                         $("#reset").show();
-
-                        for (i=0; i < usedTotal; i++) {
-                            haha.push(usedQuestions[i]);
-                        }
                     }
 
                 }
