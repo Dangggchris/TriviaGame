@@ -132,7 +132,7 @@ $(document).ready(function() {
 
                     else {
 
-                        $(".game").hide();
+                        $(".game").show();
                         $("#next").hide();
                         $("#score").show();
                         $("#reset").show();
@@ -155,7 +155,7 @@ $(document).ready(function() {
                         $(".answerOptions").off('click');
 
                     } else {
-                        $(".game").hide();
+                        $(".game").show();
                         $("#next").hide();
                         $("#score").show();
                         $("#reset").show();
