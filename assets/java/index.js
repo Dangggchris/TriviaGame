@@ -59,6 +59,7 @@ $(document).ready(function() {
     $("#reset").hide();
     $(".game").hide();
     $("#next").hide();
+    $("#showo").hide();
     
 
     $("#start").on("click",function () {
@@ -99,6 +100,7 @@ $(document).ready(function() {
         usedTotal = usedQuestions.length;
         $("#question").html(randQuestion.question); // dispalys question
         $("#next").hide();
+        $("#righto").empty();
 
 
         if (usedQuestions != haha.length) {
@@ -119,11 +121,13 @@ $(document).ready(function() {
                     correct++;
                     $("#correct").text(correct);
                     stopTimer();
+                    righto();
 
                     if (usedTotal !== 8) {
                         $("#next").show();
                         // prevent user from selecting another option
                         $(".answerOptions").off('click');
+                        
                     }
 
                     else {
@@ -141,12 +145,15 @@ $(document).ready(function() {
                     wrong++;
                     $("#wrong").text(wrong);
                     stopTimer();
+                    wrongo();
+                    
+                    
 
                     if (usedTotal !== 8) {
                         $("#next").show();
                         // prevent user from selecting another option
                         $(".answerOptions").off('click');
-                        console.log(usedTotal);
+
                     } else {
                         $(".game").hide();
                         $("#next").hide();
@@ -161,9 +168,23 @@ $(document).ready(function() {
         
     }
 
+    function wrongo() {
+        var ans = parseInt(randQuestion.answer);
+        $("#righto").append("Correct answer is: " + randQuestion.choices[ans]);
+        $("#showo").show();
+        console.log("Correct answer is: " + randQuestion.choices[ans]);
+    }
+
+    function righto() {
+        
+        $("#righto").append("Nice Job!");
+        $("#showo").show();
+    }
+
     function removeQuestion() {
         $("#question").empty();
         $("#choices").empty();
+        $("#showo").empty();
         selectQuestion();
         startTimer();
     }
