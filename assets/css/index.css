@@ -1,0 +1,14 @@
+body {
+    background-image: url("../images/dotabg.jpg");
+    font-family: 'Cinzel', serif;
+   }
+
+.game, #wrongo {
+    background: teal;
+    color: white;
+    opacity: .9;
+}
+
+h1 {
+    color: white;
+}
