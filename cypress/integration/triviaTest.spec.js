@@ -6,5 +6,4 @@ describe('My First Test', () => {
   it('Start game', () => {
     cy.get('#start').click()
   })
-
 })
